@@ -2,14 +2,14 @@ import 'package:desafio02/modules/characters/models/favorite_character.dart';
 import 'package:desafio02/modules/characters/repository/favorite_repository.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteCharactersListPage extends StatefulWidget {
-  FavoriteCharactersListPage({Key? key}) : super(key: key);
+class FavoriteCharactersListScreen extends StatefulWidget {
+  FavoriteCharactersListScreen({Key? key}) : super(key: key);
 
   @override
-  createState() => _FavoriteCharactersListPageState();
+  createState() => _FavoriteCharactersListScreenState();
 }
 
-class _FavoriteCharactersListPageState extends State {
+class _FavoriteCharactersListScreenState extends State {
   var favorites = new List<FavoriteCharacter>.empty();
 
   /// Esse método é responsável por obter todos os personagens favoritados

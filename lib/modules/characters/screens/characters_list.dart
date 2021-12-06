@@ -6,14 +6,14 @@ import 'package:desafio02/modules/characters/services/api.dart';
 import 'package:flutter/material.dart';
 import 'favorite_characters_list.dart';
 
-class CharactersListPage extends StatefulWidget {
-  CharactersListPage({Key? key}) : super(key: key);
+class CharactersListScreen extends StatefulWidget {
+  CharactersListScreen({Key? key}) : super(key: key);
 
   @override
-  createState() => _CharactersListPageState();
+  createState() => _CharactersListScreenState();
 }
 
-class _CharactersListPageState extends State {
+class _CharactersListScreenState extends State {
   var characters = new List<Character>.empty();
 
   /// Esse método obtém os personagens da API
@@ -57,7 +57,7 @@ class _CharactersListPageState extends State {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CharactersListDetails(
+                          builder: (context) => CharactersListDetailsScreen(
                               character: characters[index]),
                         ),
                       );
@@ -98,7 +98,7 @@ class _CharactersListPageState extends State {
         onPressed: () => {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FavoriteCharactersListPage())
+            MaterialPageRoute(builder: (context) => FavoriteCharactersListScreen())
           )
         },
         tooltip: 'Favorites',

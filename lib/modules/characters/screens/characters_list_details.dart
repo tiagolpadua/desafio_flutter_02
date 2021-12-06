@@ -5,19 +5,19 @@ import 'package:desafio02/modules/characters/models/favorite_character.dart';
 import 'package:desafio02/modules/characters/repository/favorite_repository.dart';
 import 'package:flutter/material.dart';
 
-class CharactersListDetails extends StatefulWidget {
+class CharactersListDetailsScreen extends StatefulWidget {
   final Character character;
 
-  CharactersListDetails({Key? key, required this.character}) : super(key: key);
+  CharactersListDetailsScreen({Key? key, required this.character}) : super(key: key);
 
   @override
-  createState() => _CharactersListDetailsState(character);
+  createState() => _CharactersListDetailsScreenState(character);
 }
 
-class _CharactersListDetailsState extends State {
+class _CharactersListDetailsScreenState extends State {
   var isFavorite = false;
   final Character character;
-  _CharactersListDetailsState(this.character);
+  _CharactersListDetailsScreenState(this.character);
 
   initState() {
     super.initState();

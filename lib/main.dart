@@ -1,3 +1,4 @@
+import 'package:desafio02/modules/characters/controllers/characters_controller.dart';
 import 'package:flutter/material.dart';
 import 'modules/characters/screens/characters_list.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: CharactersListScreen(),
+      home: CharactersListScreen(controller: new CharactersController()),
     );
   }
 }

@@ -1,28 +1,30 @@
-import 'dart:convert';
-
+import 'package:desafio02/modules/characters/controllers/characters_controller.dart';
 import 'package:desafio02/modules/characters/models/character.dart';
 import 'package:desafio02/modules/characters/screens/characters_list_details.dart';
-import 'package:desafio02/modules/characters/services/api.dart';
 import 'package:flutter/material.dart';
 import 'favorite_characters_list.dart';
 
 class CharactersListScreen extends StatefulWidget {
-  CharactersListScreen({Key? key}) : super(key: key);
+  final CharactersController controller;
+
+  CharactersListScreen({Key? key, required this.controller}) : super(key: key);
 
   @override
-  createState() => _CharactersListScreenState();
+  createState() => _CharactersListScreenState(controller: controller);
 }
 
-class _CharactersListScreenState extends State {
+class _CharactersListScreenState extends State<CharactersListScreen> {
+  final CharactersController controller;
   var characters = new List<Character>.empty();
 
+  _CharactersListScreenState({required this.controller}) : super();
+
   /// Esse método obtém os personagens da API
-  _getCharacters() {
-    API.getCharacters().then((response) {
-      setState(() {
-        Iterable list = json.decode(response.body);
-        characters = list.map((model) => Character.fromJson(model)).toList();
-      });
+  _getCharacters() async {
+    final response = await controller.getCharactersList();
+
+    setState(() {
+      characters = response;
     });
   }
 
@@ -42,6 +44,7 @@ class _CharactersListScreenState extends State {
       body: Column(children: [
         Container(
             child: Image(
+              key: Key('bgBackground'),
               image: AssetImage('./assets/images/harry_bg.jpg'),
             )),
         Expanded(
@@ -51,8 +54,10 @@ class _CharactersListScreenState extends State {
                 itemCount: characters.length,
                 itemBuilder: (context, index) {
                   var characterImage = characters[index].image == "" ? "https://via.placeholder.com/130x180" : characters[index].image;
+                  var identifier = 'charactersListViewItem_${characters[index].name.replaceAll(' ', '_')}'.toLowerCase();
 
                   return GestureDetector(
+                    key: Key(identifier),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -95,6 +100,7 @@ class _CharactersListScreenState extends State {
         ),
       ]),
       floatingActionButton: FloatingActionButton(
+        key: Key('favoriteCharactersBtn'),
         onPressed: () => {
           Navigator.push(
             context,

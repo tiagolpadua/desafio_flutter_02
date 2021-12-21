@@ -38,23 +38,28 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Harry Challenge', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Harry Challenge',
+            style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
       ),
       body: Column(children: [
         Container(
             child: Image(
-              key: Key('bgBackground'),
-              image: AssetImage('./assets/images/harry_bg.jpg'),
-            )),
+          key: Key('bgBackground'),
+          image: AssetImage('./assets/images/harry_bg.jpg'),
+        )),
         Expanded(
             child: ListView.builder(
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 shrinkWrap: true,
                 itemCount: characters.length,
                 itemBuilder: (context, index) {
-                  var characterImage = characters[index].image == "" ? "https://via.placeholder.com/130x180" : characters[index].image;
-                  var identifier = 'charactersListViewItem_${characters[index].name.replaceAll(' ', '_')}'.toLowerCase();
+                  var characterImage = characters[index].image == ""
+                      ? "https://via.placeholder.com/130x180"
+                      : characters[index].image;
+                  var identifier =
+                      'charactersListViewItem_${characters[index].name.replaceAll(' ', '_')}'
+                          .toLowerCase();
 
                   return GestureDetector(
                     key: Key(identifier),
@@ -77,8 +82,7 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
                               radius: 20.0,
                             ),
                             title: Text(characters[index].name),
-                            subtitle: Text(characters[index].house)
-                        ),
+                            subtitle: Text(characters[index].house)),
                       ),
                       decoration: new BoxDecoration(
                         boxShadow: [
@@ -95,17 +99,15 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
                       ),
                     ),
                   );
-                }
-            )
-        ),
+                })),
       ]),
       floatingActionButton: FloatingActionButton(
         key: Key('favoriteCharactersBtn'),
         onPressed: () => {
           Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => FavoriteCharactersListScreen())
-          )
+              context,
+              MaterialPageRoute(
+                  builder: (context) => FavoriteCharactersListScreen()))
         },
         tooltip: 'Favorites',
         child: Icon(Icons.favorite),

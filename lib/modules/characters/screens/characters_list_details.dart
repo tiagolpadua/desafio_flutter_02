@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 class CharactersListDetailsScreen extends StatefulWidget {
   final Character character;
 
-  CharactersListDetailsScreen({Key? key, required this.character}) : super(key: key);
+  CharactersListDetailsScreen({Key? key, required this.character})
+      : super(key: key);
 
   @override
   createState() => _CharactersListDetailsScreenState(character);
@@ -17,6 +18,7 @@ class CharactersListDetailsScreen extends StatefulWidget {
 class _CharactersListDetailsScreenState extends State {
   var isFavorite = false;
   final Character character;
+
   _CharactersListDetailsScreenState(this.character);
 
   initState() {
@@ -57,12 +59,17 @@ class _CharactersListDetailsScreenState extends State {
   @override
   Widget build(BuildContext context) {
     var isHogwartsStudentText = character.hogwartsStudent ? 'Sim' : 'Nao';
-    var characterImage = character.image == "" ? "https://via.placeholder.com/130x180" : character.image;
+    var characterImage = character.image == ""
+        ? "https://via.placeholder.com/130x180"
+        : character.image;
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(character.name,
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text(
+            character.name,
+            style: TextStyle(fontWeight: FontWeight.bold),
+            key: Key('title_character_detail'),
+          ),
           backgroundColor: Colors.red.shade900,
         ),
         body: Column(children: [
@@ -74,25 +81,30 @@ class _CharactersListDetailsScreenState extends State {
                       width: 140,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [Image.network(characterImage, height: 180, width: 130)],
-                      )
-                  ),
+                        children: [
+                          Image.network(characterImage, height: 180, width: 130)
+                        ],
+                      )),
                   Container(
-                      width:  MediaQuery.of(context).size.width * 0.40,
+                      width: MediaQuery.of(context).size.width * 0.40,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(character.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                          Text(character.name,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
                           Text(character.house, style: TextStyle(fontSize: 18)),
                         ],
-                      )
-                  ),
+                      )),
                   Container(
-                    width:  MediaQuery.of(context).size.width * 0.15,
+                    width: MediaQuery.of(context).size.width * 0.15,
                     alignment: Alignment.center,
                     child: IconButton(
                       onPressed: () => _saveOrRemoveFavorite(character.name),
-                      icon: isFavorite ? Icon(Icons.favorite, color: Colors.red, size: 40) :  Icon(Icons.favorite, color: Colors.red.shade200, size: 40),
+                      icon: isFavorite
+                          ? Icon(Icons.favorite, color: Colors.red, size: 40)
+                          : Icon(Icons.favorite,
+                              color: Colors.red.shade200, size: 40),
                       iconSize: 40,
                     ),
                   )
